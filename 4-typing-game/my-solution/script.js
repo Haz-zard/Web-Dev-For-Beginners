@@ -21,7 +21,8 @@ const typedValueElement = document.getElementById('typed-value');
 const startElement = document.getElementById('start');
 
 startElement.addEventListener('click',() => {
-    const quote = quotes[0];
+    const quoteIndex = Math.floor(Math.random() * quotes.length);
+	const quote = quotes[quoteIndex];
 
     words = quote.split(' ');
     wordIndex = 0;
