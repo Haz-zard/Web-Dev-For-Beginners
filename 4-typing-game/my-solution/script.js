@@ -1,3 +1,5 @@
+console.log("script loarded")
+
 const quotes = [
     "The good thing about science is that it's true whether or not you believe in it.",
     "Knowing how to think empowers you far beyond those who know only what to think.",
@@ -11,23 +13,24 @@ const quotes = [
     "If you want to assert a truth, first make sure it's not just an opinion that you desperately want to be true."
   ];
 
-const words = [];
-const wordIndex = 0;
-const startTime = Date.now();
+let words = [];
+let wordIndex = 0;
+let startTime = Date.now();
 
 const quoteElement = document.getElementById('quote');
 const messageElement = document.getElementById('message');
 const typedValueElement = document.getElementById('typed-value');
 const startElement = document.getElementById('start');
 
-startElement.addEventListener('click',() => {
+document.getElementById('start').addEventListener('click', function () {
+    console.log('clicjed')
     const quoteIndex = Math.floor(Math.random() * quotes.length);
 	const quote = quotes[quoteIndex];
 
     words = quote.split(' ');
     wordIndex = 0;
 
-    const spanWords = words.map(function(word) { return `<span>${word} </span`});
+    const spanWords = words.map(function(word) { return `<span>${word} </span>`});
     quoteElement.innerHTML = spanWords.join('');
     quoteElement.childNodes[0].className = 'highlight';
     messageElement.innerText = '';
@@ -42,8 +45,9 @@ typedValueElement.addEventListener('input', () => {
     const currentWord = words[wordIndex];
     const typedValue = typedValueElement.value;
 
-    if (typedValue === currentWord && wordIndex === words.length) {
-        const elapsedTime = new Date.getTime() - startTime;
+    if (typedValue === currentWord && wordIndex === words.length - 1) {
+        console.log("completed")
+        const elapsedTime = new Date().getTime() - startTime;
         const message = `Congratulations! You finished in ${elapsedTime / 1000} seconds`;
         messageElement.innerText = message;
     } else if (typedValue.endsWith(' ') && typedValue.trim() === currentWord) {
